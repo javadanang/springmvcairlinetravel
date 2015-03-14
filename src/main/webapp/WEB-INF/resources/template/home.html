@@ -1,0 +1,24 @@
+<!DOCTYPE html>  
+<html xmlns:th="http://www.thymeleaf.org">  
+<head>  
+    <title>Spring MVC with Thymeleaf - All people</title>  
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />  
+</head>  
+<body>  
+
+  <div th:include="fragments/header :: header"></div>
+
+  <div id="content">
+  		<ul>
+  			<li th:each="deal :${specialdeals}">
+<!--   				<a th:href="/flight/@{$(deal.departFrom.airportCode)}" th:text="${deal.departFrom.airportName}"></a> -->
+  				<a th:href="@{'/flight'(flightNumber=${deal.departFrom.airportCode})}" th:text="${deal.departFrom.airportName}"/>
+  			</li>
+  			
+  		</ul>
+  
+  </div>
+
+  <div th:include="fragments/footer :: footer"></div>
+</body>  
+</html>  

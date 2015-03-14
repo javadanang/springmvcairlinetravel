@@ -5,7 +5,7 @@
 
   
     <servlet>
-        <servlet-name>airline</servlet-name>
+        <servlet-name>airlinetravel</servlet-name>
         <servlet-class>
             org.springframework.web.servlet.DispatcherServlet
         </servlet-class>
@@ -14,13 +14,13 @@
     
     <!-- When The dispatcherServlet is initialized, it will looks for a file name [servlet-name]-servlet.xml -->
     <servlet-mapping>
-        <servlet-name>airline</servlet-name>
+        <servlet-name>airlinetravel</servlet-name>
         <url-pattern>/</url-pattern>
     
     </servlet-mapping>
     
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+<!--   <welcome-file-list> -->
+<!--     <welcome-file>index.jsp</welcome-file> -->
+<!--   </welcome-file-list> -->
   
 </web-app>
