@@ -2,12 +2,42 @@
 <html>
 <head>
 <meta charset="ISO-8859-1" />
-<title>Insert title here</title>
+<title>Flight Detail</title>
 </head>
 <body>
    <div th:include="fragments/header :: header"></div>
 
-  Flight Details : DOJO
+   	<div id="content">
+   	
+   		<table class="table table-hover">
+    <thead>
+      <tr>
+      	<th>Flight No</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Cost</th>
+        <th>Depart</th>
+        <th>Depart</th>
+        <th>Arrive</th>
+      </tr>
+    </thead>
+    <tbody th:object="${flightDetail}">
+      <tr >
+      	<td><span th:text="${flightDetail.flightNo}"/></td>
+        <td>
+        	<span th:text="${flightDetail.airportFrom.code} + ': ' +  ${flightDetail.airportFrom.name}"/>
+        	 
+        </td>
+        <td><span th:text="${flightDetail.airportTo.code} + ': ' +  ${flightDetail.airportTo.name}"/></td>
+        <td><span th:text="${flightDetail.cost}"/></td>
+        <td><span th:text="${flightDetail.depart}"/></td>
+         <td><span th:text="${#dates.format(flightDetail.depart, 'dd/MMM/yyyy HH:mm')}"/></td>a
+        <td><span th:text="${#dates.format(flightDetail.arrive, 'dd/MMM/yyyy HH:mm')}"/></td>a
+      </tr>
+     
+    </tbody>
+  </table>
+   	</div>
   
 
   <div th:include="fragments/footer :: footer"></div>

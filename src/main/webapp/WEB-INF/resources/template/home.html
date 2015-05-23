@@ -1,24 +1,52 @@
-<!DOCTYPE html>  
-<html xmlns:th="http://www.thymeleaf.org">  
-<head>  
-    <title>Spring MVC with Thymeleaf - All people</title>  
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />  
-</head>  
-<body>  
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring MVC with Thymeleaf - All people</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-  <div th:include="fragments/header :: header"></div>
+</head>
+<body>
 
-  <div id="content">
-  		<ul>
-  			<li th:each="deal :${specialdeals}">
-<!--   				<a th:href="/flight/@{$(deal.departFrom.airportCode)}" th:text="${deal.departFrom.airportName}"></a> -->
-  				<a th:href="@{'/flight'(flightNumber=${deal.departFrom.airportCode})}" th:text="${deal.departFrom.airportName}"/>
-  			</li>
-  			
-  		</ul>
-  
-  </div>
+	<div th:include="fragments/header :: header"></div>
 
-  <div th:include="fragments/footer :: footer"></div>
-</body>  
-</html>  
+	<div id="content">
+		<div id="search">
+			<form action="#" th:action="@{/flight/searchFlights}" th:object="${flightSearchForm}" method="POST">
+				<div>
+					<label for="airportFromName">Airport From:</label>
+					 <input type="text" class="form-control" name="airportFromName" th:field="${flightSearchForm.airportFromName}" th:value="${airportFromName}" autofocus="autofocus"/>
+				</div>
+			 <input type="submit" value="Search" class="btn btn-search" />
+			</form>
+		</div>
+		<div id="result">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Flight No</th>
+						<th>From</th>
+						<th>To</th>
+						<th>Depart</th>
+						<th>Arrive</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="deal :${specialdeals}">
+						<td><a th:href="@{'/flight'(flightNumber=${deal.id})}" th:text="${deal.flightNo}" /></td>
+						<td><span th:text="${deal.airportFrom.code}  + ': ' + ${deal.airportFrom.name}" /></td>
+						<td><span th:text="${deal.airportTo.code} + ': ' +  ${deal.airportTo.name}" /></td>
+						<td><span th:text="${#dates.format(deal.depart, 'dd/MM/yyyy HH:mm')}"/></td>
+						 <td><span th:text="${#dates.format(deal.arrive, 'dd/MM/yyyy HH:mm')}"/></td>
+					</tr>
+
+				</tbody>
+			</table>
+
+		</div>
+
+
+	</div>
+
+	<div th:include="fragments/footer :: footer"></div>
+</body>
+</html>

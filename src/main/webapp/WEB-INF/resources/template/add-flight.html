@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring MVC - Java Danang</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+<body>
+
+	<div th:include="fragments/header :: header"></div>
+
+	<div id="content">
+		<div th:if="${errors != null}" >
+			<ul th:each="error :${errors}">
+				<li><label th:for="${error.objectName}" class="has-error has-feedback" style="color: red" th:text="#{${error.objectName}} + ':' + ${error.defaultMessage}"/></li>
+			</ul>
+		</div>
+		<div class="container">
+			<form action="#" th:action="@{/flight/addFlight}" th:object="${flightForm}" method="POST" class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="flightNo">Flight No:</label> <input id="flightNo"  type="text" class="form-control" name="flightNo" th:field="${flightForm.flightNo}"  />
+				</div>
+				<div class="form-group">
+					<label for="airportFrom">From:</label> <select  id="airportFromId"  class="form-control" th:field="${flightForm.airportFromId}" th:remove="all-but-first">
+						<option th:each="airport : ${airports}" th:value="${airport.code}" th:text="${airport.value}"></option>
+
+					</select>
+					
+				</div>
+				<div class="form-group">
+					<label for="airportTo">To:</label> <select id="airportToId" class="form-control" th:field="${flightForm.airportToId}" th:remove="all-but-first">
+						<option th:each="airport : ${airports}" th:value="${airport.code}" th:text="${airport.value}"></option>
+					</select>
+					
+				</div>
+				<div class="form-group">
+					<label for="cost">Cost:</label>
+					 <input id="cost" type="text" class="form-control" name="cost" th:field="${flightForm.cost}" />
+					
+				</div>
+				<div class="form-group">
+					<label for="depart">Depart:</label>
+					
+						<div class="col-sm-6 input-group date" id='datetimepicker_depart'>
+							<input id="depart" type='text' th:field="${flightForm.depart}" /> <span class="input-group-addon"> <span
+								class="glyphicon glyphicon-calendar"></span>
+							</span>
+						</div>
+					
+					
+				</div>
+
+				<div class="form-group">
+					<label for="arrive">Arrive:</label>
+
+					
+						<div class="col-sm-6 input-group date" id='datetimepicker_arrive'>
+							<input id="arrive" type='text' th:field="${flightForm.arrive}" /> <span class="input-group-addon"> <span
+								class="glyphicon glyphicon-calendar"></span>
+							</span>
+
+						</div>
+					
+
+				</div>
+				<input type="submit" value="Add Flight" class="btn btn-add" />
+				<input type="reset" value="Reset" class="btn btn-reset" />
+				<a type="button" th:href="@{/}" class="btn btn-cancel" >Cancel</a>
+		</form>
+	</div>
+
+
+	</div>
+
+	<div th:include="fragments/footer :: footer"></div>
+	<script type="text/javascript">
+				$(function() {
+					$('#datetimepicker_depart').datetimepicker();
+					$('#datetimepicker_arrive').datetimepicker();
+				});
+	</script>
+</body>
+</html>

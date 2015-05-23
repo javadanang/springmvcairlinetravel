@@ -1,14 +1,25 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-  <body>
-  
-    <div th:fragment="header">
-     Airline Travel
-    </div>
-  
-  </body>
-  
+<body>
+
+	<div th:fragment="header">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+	 	<link href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/d004434a5ff76e7b97c8b07c01f34ca69e635d97/build/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://momentjs.com/downloads/moment.js"/>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   		<script src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/d004434a5ff76e7b97c8b07c01f34ca69e635d97/src/js/bootstrap-datetimepicker.js"></script>
+	Airline Travel
+		<hr/>
+			<a class="btn btn-add" th:href="@{/}" >Home</a>
+			<a class="btn btn-add" th:href="@{/flight/initAddFlight}" >Add Flight</a>
+			<a class="btn btn-add" th:href="@{/flight/addAirport}" >Add Airport</a>
+		<hr/>
+	</div>
+	
+
+</body>
+
 </html>
